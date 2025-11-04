@@ -13,5 +13,6 @@ const alias = fs.readdirSync('./src', { withFileTypes: true })
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  resolve: { alias }
+  resolve: { alias },
+  base: '/gerador-planilhas/'
 })
