@@ -147,6 +147,52 @@ function App() {
     formula_cell.alignment = alignment
     formula_cell.numFmt = monetary_numFmt
 
+// Linha da NOTA (8%)
+const nota_row = worksheet.addRow(Array(worksheet.columns.length).fill(''))
+
+// Célula do texto "NOTA"
+const nota_label = nota_row.findCell(4)
+nota_label.value = 'NOTA (8%)'
+nota_label.font = undefined
+nota_label.alignment = alignment
+
+// Célula do valor da NOTA
+const nota_value = nota_row.findCell(5)
+
+// Fórmula: TOTAL * 8%
+// O TOTAL está na mesma coluna (E) e na linha acima
+nota_value.value = {
+  formula: `E${nota_row.number - 1}*0.08`
+}
+
+nota_value.font = undefined
+nota_value.alignment = alignment
+nota_value.numFmt = monetary_numFmt
+
+// Linha do RECIBO (TOTAL - NOTA)
+const recibo_row = worksheet.addRow(Array(worksheet.columns.length).fill(''))
+
+// Célula do texto "RECIBO"
+const recibo_label = recibo_row.findCell(4)
+recibo_label.value = 'RECIBO'
+recibo_label.font = { bold: false }
+recibo_label.alignment = alignment
+
+// Célula do valor do RECIBO
+const recibo_value = recibo_row.findCell(5)
+
+// Fórmula:
+// TOTAL está duas linhas acima
+// NOTA está uma linha acima
+recibo_value.value = {
+  formula: `E${recibo_row.number - 2}-E${recibo_row.number - 1}`
+}
+
+recibo_value.font = { bold: false }
+recibo_value.alignment = alignment
+recibo_value.numFmt = monetary_numFmt
+
+
     // Gera o arquivo Excel em memória
     const buffer = await workbook.xlsx.writeBuffer()
 
