@@ -95,16 +95,19 @@ function App() {
 
         // Se for a coluna 5, trata como valor monetário
         if (col === 5) {
-          const value = cell.text
-            .replace(/^R\$/, '') // remove "R$"
-            .replace(/,/g, '.')  // converte vírgula para ponto
-          
-          // Converte texto para número
-          cell.value = Number(value)
+  const raw = cell.text
 
-          // Aplica formatação monetária R$
-          cell.numFmt = monetary_numFmt
-        }
+  const value = raw
+    .replace(/"/g, '')     // remove aspas do CSV
+    .replace('R$', '')     // remove R$
+    .trim()                // remove espaços
+    .replace(',', '.')     // vírgula decimal → ponto
+
+  const number = Number(value)
+
+  cell.value = isNaN(number) ? 0 : number
+  cell.numFmt = monetary_numFmt
+}
       })
     }
 
