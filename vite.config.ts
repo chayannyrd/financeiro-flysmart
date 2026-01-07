@@ -17,5 +17,5 @@ export default defineConfig({
     outDir: 'docs'
   },
   resolve: { alias },
-  base: '/financeiro-flysmart/'
+  base: '/ferramentas-flysmart/'
 })

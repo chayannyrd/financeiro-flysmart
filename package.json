@@ -1,7 +1,7 @@
 {
-  "name": "fly-smart",
+  "name": "ferramentas-flysmart",
   "private": false,
-  "homepage": "https://chayannyrd.github.io/gerador-planilhas/",
+  "homepage": "https://chayannyrd.github.io/ferramentas-flysmart/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
